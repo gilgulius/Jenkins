@@ -6,6 +6,16 @@ pipeline {
     }
 
     stages {
+        stage('Validate Parameters') {
+            steps {
+                script {
+                    // Check if the MESSAGE parameter is empty
+                    if (!params.MESSAGE?.trim()) {
+                        error "The MESSAGE parameter cannot be empty. Please provide a valid message."
+                    }
+                }
+            }
+        }
         stage('Clone Repository') {
             steps {
                 git branch: 'main', url: 'https://github.com/gilgulius/jenkins.git'
