@@ -9,9 +9,9 @@ pipeline {
         stage('Set Default Message') {
             steps {
                 script {
-                    // If the MESSAGE is empty, set the default message
+                   
                     if (!params.MESSAGE?.trim()) {
-                        env.MESSAGE = 'Hello from Jenkins!' // Set to default message if empty
+                        env.MESSAGE = 'Hello from Jenkins!' 
                     } else {
                         env.MESSAGE = params.MESSAGE
                     }
