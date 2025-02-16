@@ -18,6 +18,7 @@ pipeline {
                 }
             }
         }
+
         stage('Clone Repository') {
             steps {
                 git branch: 'main', url: 'https://github.com/gilgulius/jenkins.git'
@@ -26,7 +27,8 @@ pipeline {
 
         stage('Run PowerShell Script') {
             steps {
-                powershell "powershell -ExecutionPolicy Bypass -File script.ps1 -Message '${params.MESSAGE}'"
+            
+                powershell "powershell -ExecutionPolicy Bypass -File script.ps1 -Message '${env.MESSAGE}'"
             }
         }
 
@@ -42,8 +44,5 @@ pipeline {
                 ])
             }
         }
-        
     }
 }
-    
-
