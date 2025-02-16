@@ -6,12 +6,14 @@ pipeline {
     }
 
     stages {
-        stage('Validate Parameters') {
+        stage('Set Default Message') {
             steps {
                 script {
-                    // Check if the MESSAGE parameter is empty
+                    // If the MESSAGE is empty, set the default message
                     if (!params.MESSAGE?.trim()) {
-                        error "The MESSAGE parameter cannot be empty. Please provide a valid message."
+                        env.MESSAGE = 'Hello from Jenkins!' // Set to default message if empty
+                    } else {
+                        env.MESSAGE = params.MESSAGE
                     }
                 }
             }
