@@ -5,9 +5,6 @@ param (
 # Get timestamp for logging
 $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
 
-# Define the output file
-$outputFile = "output.html"
-
 # Generate HTML content
 $htmlContent = @"
 <!DOCTYPE html>
@@ -33,7 +30,9 @@ $htmlContent = @"
 "@
 
 # Save the file
+$outputFile = "output.html"
 $htmlContent | Out-File -Encoding utf8 $outputFile
 
 # Print the output location
 Write-Host "`nReport generated: file://$(Resolve-Path $outputFile)`n" -ForegroundColor Green
+
