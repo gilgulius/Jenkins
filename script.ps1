@@ -17,12 +17,13 @@ $htmlContent = @"
         h1 { color: #0073e6; }
         p { font-size: 18px; }
         .timestamp { font-size: 14px; color: gray; }
+        .error { color: red; font-weight: bold; }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Jenkins Job Report</h1>
-        <p>Message: <strong>$Message</strong></p>
+        <p class="error">$Message</p>
         <p class="timestamp">Generated at: $timestamp</p>
     </div>
 </body>
@@ -35,4 +36,3 @@ $htmlContent | Out-File -Encoding utf8 $outputFile
 
 # Print the output location
 Write-Host "`nReport generated: file://$(Resolve-Path $outputFile)`n" -ForegroundColor Green
-
