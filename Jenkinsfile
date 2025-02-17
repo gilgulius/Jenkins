@@ -6,12 +6,12 @@ pipeline {
     }
 
     stages {
-        stage('Set Default Message') {
+        stage('Validate Message') {
             steps {
                 script {
-                   
                     if (!params.MESSAGE?.trim()) {
-                        env.MESSAGE = 'Hello from Jenkins!' 
+                        echo "⚠️ WARNING: MESSAGE parameter is empty. Displaying error in report."
+                        env.MESSAGE = '⚠️ ERROR: No message provided. Using default.'
                     } else {
                         env.MESSAGE = params.MESSAGE
                     }
@@ -27,7 +27,6 @@ pipeline {
 
         stage('Run PowerShell Script') {
             steps {
-            
                 powershell "powershell -ExecutionPolicy Bypass -File script.ps1 -Message '${env.MESSAGE}'"
             }
         }
